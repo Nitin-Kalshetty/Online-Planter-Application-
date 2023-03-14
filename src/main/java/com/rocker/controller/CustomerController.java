@@ -26,6 +26,7 @@ public class CustomerController {
 	
 	@PostMapping("/customer")
 	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
+		customer.setRole("ROLE_"+customer.getRole().toUpperCase());
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		Customer registeredCustomer = customerService.registerCustomer(customer);
 		return new ResponseEntity<Customer>(registeredCustomer,HttpStatus.ACCEPTED);

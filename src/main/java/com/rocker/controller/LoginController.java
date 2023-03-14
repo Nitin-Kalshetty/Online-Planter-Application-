@@ -1,10 +1,11 @@
 package com.rocker.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class LoginController {
 	
 	@GetMapping("/signIn")
 	public ResponseEntity<Customer> getLoggedInCustomerDetailsHandler(Authentication auth){
-		Customer customer = customerRepo.findByEmail(auth.getUsername()).orElseThrow(() -> new BadCredentialsException("Wrong Credentials"));
+		Customer customer = customerRepo.findByEmail(auth.getName()).orElseThrow(() -> new BadCredentialsException("Wrong Credentials"));
 		return new ResponseEntity<Customer>(customer,HttpStatus.ACCEPTED);
 	}
 }

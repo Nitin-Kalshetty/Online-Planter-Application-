@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,7 +31,10 @@ public class CustomerUserDetailsService implements UserDetailsService{
 		}
 		Customer customer = opt.get();
 		List<GrantedAuthority> authorities = new ArrayList<>();
+		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(customer.getRole());
+		authorities.add(sga);
 		return new User(customer.getEmail(),customer.getPassword(),authorities);
+//		return new CustomerUserDetails(customer);
 	}
 
 }
