@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +17,10 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"plantHeight", "plantSpread",
+		"commonName","difficultyLevel",
+		"temperature","typeOfPlant"
+})})
 public class Plant {
 
 	@Id
@@ -49,7 +55,7 @@ public class Plant {
     
     @NotNull(message = "Plant Stock can not be null")
     @Min(value = 1, message = "Plant Stock must be greater than equal to 1")
-    private Integer plantsStock;
+    private Integer plantStock;
     
     @NotNull(message = "plant cost can not be null")
     @Min(value = 1, message = "Planter cost must be greater than equal to 1")

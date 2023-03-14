@@ -8,17 +8,27 @@ import com.rocker.model.Planter;
 
 public interface PlanterService {
 
-public Planter addPlanter(Planter planter) throws PlanterException,CustomerException;
+public Planter addPlanter(Planter planter) throws PlanterException;
 	
-	public Planter updatePlanter(Planter planter) throws PlanterException,CustomerException;
+	public Planter updatePlanter(Planter planter) throws PlanterException;
 	
-	public Planter deletePlanter (Integer planterId) throws PlanterException,CustomerException;
+	public Planter deletePlanter (Integer planterId) throws PlanterException;
 	
-	public Planter viewPlanter(Integer planterId) throws PlanterException,CustomerException;
+	public Planter viewPlanterById(Integer planterId) throws PlanterException;
 	
-	public List<Planter> viewPlanterByShape(String planterShape) throws PlanterException,CustomerException;
+	public List<Planter> viewPlanterByShape(String planterShape) throws PlanterException;
 	
-	public List<Planter> viewAllPlanters() throws PlanterException,CustomerException;
+	public List<Planter> viewPlanterByColor(String planterColor) throws PlanterException;
 	
-	public List<Planter> viewAllPlanters(Double minCost,Double maxCost) throws PlanterException,CustomerException;
+	public List<Planter> viewAllPlanters() throws PlanterException;
+	
+	public List<Planter> viewPlantersByCostRange(Double minCost,Double maxCost) throws PlanterException;
+	
+	public List<Planter> viewPlantersByCapacityRange(Double minC,Double maxC) throws PlanterException;
+	
+	public List<Planter> viewPlantersByHeightRange(Double minH,Double maxH) throws PlanterException;
+	
+	public List<Planter> viewPlantersByHolesRange(Integer minHole,Integer maxHole) throws PlanterException;
+	
+	
 }

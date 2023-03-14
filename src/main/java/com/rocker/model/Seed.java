@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +17,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"commanName", "bloomTime",
+		"watering","difficultLevel",
+		"temperature","typeOfSeed",
+		"seedStock","seedsCost","seedPerPacket"
+})})
 public class Seed {
 
 	@Id
@@ -34,7 +41,7 @@ public class Seed {
 	private String difficultLevel;
 	
 	@NotBlank(message = "Temparature is Mandatory")
-	private String temparature;
+	private String temperature;
 	
 	@NotBlank(message = "Type Of Seed is Mandatory")
 	private String typeOfSeed;
@@ -52,5 +59,5 @@ public class Seed {
 	
 	@NotNull(message = "Seed Per Packed should not be null")
 	@Min(value =  1,message = "Seed per packet must be greater than equal to 1")
-	private Integer seedPerPacked;
+	private Integer seedPerPacket;
 }
