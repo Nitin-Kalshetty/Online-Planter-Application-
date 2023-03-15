@@ -43,9 +43,9 @@ public class Plant {
     @NotBlank(message = "Provide is it medicinal or Culinary Use ")
     private String medicinalOrCulinaryUse;
 
-    private String difficultyLevel;
+    private Integer difficultyLevel;
 
-    private String temperature;
+    private Integer temperature;
     
     @NotBlank(message = "Type Of Plant can not be blank")
     private String typeOfPlant;

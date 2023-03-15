@@ -29,7 +29,7 @@ public class Seed {
 	private Integer seedId;
 	
 	@NotBlank(message = "Seed Name is Mandatory")
-	private String commanName;
+	private String commonName;
 	
 	@NotBlank(message = "Bloom Time is Mandatory")
 	private String bloomTime;
@@ -38,10 +38,10 @@ public class Seed {
 	private String watering;
 	
 	@NotBlank(message = "DifficultLevel is Mandatory")
-	private String difficultLevel;
+	private Integer difficultyLevel;
 	
 	@NotBlank(message = "Temparature is Mandatory")
-	private String temperature;
+	private Integer temperature;
 	
 	@NotBlank(message = "Type Of Seed is Mandatory")
 	private String typeOfSeed;
@@ -55,9 +55,9 @@ public class Seed {
 	
 	@NotNull(message = "Seed Cost should not be null")
 	@Min(value = 1 , message = "Seed cost must be greater than equal to 1")
-	private Double seedsCost;
+	private Double seedCost;
 	
 	@NotNull(message = "Seed Per Packed should not be null")
 	@Min(value =  1,message = "Seed per packet must be greater than equal to 1")
-	private Integer seedPerPacket;
+	private Integer seedsPerPacket;
 }

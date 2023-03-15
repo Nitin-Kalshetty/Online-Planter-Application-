@@ -47,34 +47,18 @@ public class PlanterServiceImpl implements PlanterService{
 			throw new PlanterException("There is no such planter please check");
 		}
 		Planter check = opt.get();
-		check.setDrainageHoles(checker(planter.getDrainageHoles()) ? planter.getDrainageHoles() : check.getDrainageHoles());
-		check.setPlanterCapacity(checker(planter.getPlanterCapacity()) ? planter.getPlanterCapacity() : check.getPlanterCapacity());
-		check.setPlanterColor(checker(planter.getPlanterColor()) ? planter.getPlanterColor() : check.getPlanterColor());
-		check.setPlanterCost(checker(planter.getPlanterCost()) ? planter.getPlanterCost() : check.getPlanterCost());
-		check.setPlanterheight(checker(planter.getPlanterheight()) ? planter.getPlanterheight() : check.getPlanterheight());
-		check.setPlanterShape(checker(planter.getPlanterShape()) ? planter.getPlanterShape() : check.getPlanterShape());
-		check.setPlanterStock(checker(planter.getPlanterStock()) ? planter.getPlanterStock() : check.getPlanterStock());
+		UpdateValidator uv = new UpdateValidator();
+		check.setDrainageHoles(uv.checker(planter.getDrainageHoles()) ? planter.getDrainageHoles() : check.getDrainageHoles());
+		check.setPlanterCapacity(uv.checker(planter.getPlanterCapacity()) ? planter.getPlanterCapacity() : check.getPlanterCapacity());
+		check.setPlanterColor(uv.checker(planter.getPlanterColor()) ? planter.getPlanterColor() : check.getPlanterColor());
+		check.setPlanterCost(uv.checker(planter.getPlanterCost()) ? planter.getPlanterCost() : check.getPlanterCost());
+		check.setPlanterheight(uv.checker(planter.getPlanterheight()) ? planter.getPlanterheight() : check.getPlanterheight());
+		check.setPlanterShape(uv.checker(planter.getPlanterShape()) ? planter.getPlanterShape() : check.getPlanterShape());
+		check.setPlanterStock(uv.checker(planter.getPlanterStock()) ? planter.getPlanterStock() : check.getPlanterStock());
 		
 		return planterRepo.save(check);
 	}
-	public static boolean checker(String str) {
-		if(str.equals("") || str.startsWith(" ") || str==null) {
-			return false;
-		}
-		return true;
-	}
-	public static boolean checker(Integer id) {
-		if(id<=0 ) {
-			return false;
-		}
-		return true;
-	}
-	public static boolean checker(Double id) {
-		if(id<=0 ) {
-			return false;
-		}
-		return true;
-	}
+	
 
 
 	@Override

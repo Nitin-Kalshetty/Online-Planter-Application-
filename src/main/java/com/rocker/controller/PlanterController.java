@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rocker.model.Plant;
 import com.rocker.model.Planter;
 import com.rocker.services.PlanterService;
 
@@ -37,10 +38,13 @@ public class PlanterController {
 		return new ResponseEntity<>(planterService.deletePlanter(planterId),HttpStatus.OK);
 	}
 	@GetMapping("/planterById")
-	public ResponseEntity<Planter> viewPlanterByHandler(@RequestParam Integer planterId){
+	public ResponseEntity<Planter> viewPlanterByIdHandler(@RequestParam Integer planterId){
 		return new ResponseEntity<>(planterService.viewPlanterById(planterId),HttpStatus.OK);
 	}
-	
+	@GetMapping("/planters")
+	public ResponseEntity<List<Planter>> viewAllPlantersHandler(){
+		return new ResponseEntity<>(planterService.viewAllPlanters(),HttpStatus.OK);
+	}
 	@GetMapping("/plantersByCapacity")
 	public ResponseEntity<List<Planter>> viewPlantersByCapacityHandler(@RequestParam Double capacityMin,@RequestParam Double capacityMax){
 		return new ResponseEntity<>(planterService.viewPlantersByCapacityRange(capacityMin, capacityMax),HttpStatus.OK);
