@@ -8,11 +8,16 @@ import org.springframework.stereotype.Repository;
 import com.rocker.model.Seed;
 
 @Repository
-public interface SeedRepository extends JpaRepository<Seed, Integer>{
+public interface SeedRepository extends JpaRepository<Seed,Integer> {
+
 	public List<Seed> findByCommonName(String commonName);
-	public List<Seed> findByTemperatureBetween(Double min,Double max);
+
+	public List<Seed> findByTemperatureBetween(Double min, Double max);
+
 	public List<Seed> findByTypeOfSeed(String typeOfPlant);
-	public List<Seed> findBySeedCostBetween(Double min,Double max);
-	public List<Seed> findBySeedsPerPacketBetween(Integer min,Integer max);
-	
+
+	public List<Seed> findBySeedCostBetween(Double min, Double max);
+
+	public List<Seed> findBySeedsPerPacketBetween(Integer min, Integer max);
+
 }
