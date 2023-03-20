@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rocker.model.Customer;
@@ -20,25 +22,26 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
-		customer.setRole("ROLE_"+customer.getRole().toUpperCase());
+	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer) {
+		customer.setRole("ROLE_" + customer.getRole().toUpperCase());
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 		Customer registeredCustomer = customerService.registerCustomer(customer);
-		return new ResponseEntity<Customer>(registeredCustomer,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Customer>(registeredCustomer, HttpStatus.ACCEPTED);
 	}
-	
-	@GetMapping("/customer/{email}")
-	public ResponseEntity<Customer> getCustomerHandler(@PathVariable("email") String email){
-		return new ResponseEntity<Customer>(customerService.getCustomerDetailsByEmail(email),HttpStatus.OK);
+
+	@GetMapping("/customer")
+	public ResponseEntity<Customer> getCustomerHandler(@RequestParam String email) {
+		return new ResponseEntity<Customer>(customerService.getCustomerDetailsByEmail(email), HttpStatus.OK);
 	}
+
 	@GetMapping("/customers")
-	public ResponseEntity<List<Customer>> getAllCustomerHandler(){
-		
-		return new ResponseEntity<List<Customer>>(customerService.getAllCustomerDetails(),HttpStatus.OK);
+	public ResponseEntity<List<Customer>> getAllCustomerHandler() {
+
+		return new ResponseEntity<List<Customer>>(customerService.getAllCustomerDetails(), HttpStatus.OK);
 	}
 }

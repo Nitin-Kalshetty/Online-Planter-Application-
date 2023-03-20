@@ -32,6 +32,8 @@ public class Customer {
 
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
+
+	@Column(unique = true)
 	private String mobile;
 
 	private String role;
