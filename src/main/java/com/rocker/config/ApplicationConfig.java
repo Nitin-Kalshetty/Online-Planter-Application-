@@ -26,20 +26,20 @@ public class ApplicationConfig {
 	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 		http
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				// .and()
-				// .csrf().disable()
-				// .cors().configurationSource(new CorsConfigurationSource() {
+				.and()
+				.csrf().disable()
+				.cors().configurationSource(new CorsConfigurationSource() {
 
-				// @Override
-				// public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-				// CorsConfiguration cfg = new CorsConfiguration();
-				// cfg.setAllowedOrigins(Collections.singletonList("*"));
-				// cfg.setAllowedMethods(Collections.singletonList("*"));
-				// // cfg.setAllowCredentials(true);
-				// cfg.setAllowedHeaders(Collections.singletonList("*"));
-				// cfg.setExposedHeaders(Arrays.asList("Authorization"));
-				// cfg.setMaxAge(3600L);
-				// return cfg;
+				@Override
+				public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+				CorsConfiguration cfg = new CorsConfiguration();
+				cfg.setAllowedOrigins(Collections.singletonList("*"));
+				cfg.setAllowedMethods(Collections.singletonList("*"));
+				// cfg.setAllowCredentials(true);
+				cfg.setAllowedHeaders(Collections.singletonList("*"));
+				cfg.setExposedHeaders(Arrays.asList("Authorization"));
+				cfg.setMaxAge(3600L);
+				return cfg;
 				// }
 				// })
 				.and()
